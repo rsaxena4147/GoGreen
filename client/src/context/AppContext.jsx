@@ -42,7 +42,7 @@ export const AppContextProvider = ({ children }) => {
         setCartItems(data.user.cartItems);
       } else {
         setUser(null);
-           toast.info("Please login!");
+           toast("Please login!");
       }
     } catch (error) {
       toast.error(error.message);
