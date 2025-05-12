@@ -141,7 +141,7 @@ const Navbar = () => {
           </NavLink>
           {user && (
             <NavLink
-           
+            to="/products"
                onClick={() => navigate("/my-orders")}
               className="block"
             >
