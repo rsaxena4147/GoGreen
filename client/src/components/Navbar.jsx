@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
-import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const {
@@ -15,7 +15,6 @@ const Navbar = () => {
     setsearchQuery,
     navigate,
     getCartCount,
-    
   } = useAppContext();
 
   useEffect(() => {
@@ -38,8 +37,9 @@ const Navbar = () => {
       toast.error(error.message);
     }
   };
+
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
+    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all z-40">
       <NavLink to="/" onClick={() => setOpen(false)}>
         <img className="h-9" src={assets.logo} alt="dummyLogoColored" />
       </NavLink>
@@ -69,6 +69,7 @@ const Navbar = () => {
             {getCartCount()}
           </button>
         </div>
+
         {!user ? (
           <button
             onClick={() => setShowUserLogin(true)}
@@ -79,7 +80,7 @@ const Navbar = () => {
         ) : (
           <div className="relative group">
             <img src={assets.profile_icon} className="w-10" alt="" />
-            <ul className="hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-md tezt-sm z-40">
+            <ul className="hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-md text-sm z-40">
               <li className="p-1.5 pl-3 font-medium text-gray-800 cursor-default">
                 {user.name}
               </li>
@@ -93,13 +94,14 @@ const Navbar = () => {
                 onClick={logout}
                 className="p-1.5 pl-3 hover:bg-primary/10 cursor-pointer"
               >
-                {" "}
                 Logout
               </li>
             </ul>
           </div>
         )}
       </div>
+
+      {/* Mobile Icons */}
       <div className="flex items-center gap-6 sm:hidden">
         <div
           onClick={() => navigate("/cart")}
@@ -110,21 +112,22 @@ const Navbar = () => {
             {getCartCount()}
           </button>
         </div>
+
         <button
-          onClick={() => (open ? setOpen(false) : setOpen(true))}
+          onClick={() => setOpen(!open)}
           aria-label="Menu"
           className=""
         >
-          {/* Menu Icon SVG */}
           <img src={assets.menu_icon} alt="menu" />
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {open && (
         <div
           className={`${
             open ? "flex" : "hidden"
-          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
+          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
         >
           <NavLink to="/" onClick={() => setOpen(false)} className="block">
             Home
