@@ -113,59 +113,61 @@ const Navbar = () => {
           </button>
         </div>
 
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-          className=""
-        >
+        <button onClick={() => setOpen(!open)} aria-label="Menu" className="">
           <img src={assets.menu_icon} alt="menu" />
         </button>
       </div>
 
       {/* Mobile Menu */}
       {open && (
-        <div
-          className={`${
-            open ? "flex" : "hidden"
-          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
-        >
-          <NavLink to="/" onClick={() => setOpen(false)} className="block">
-            Home
-          </NavLink>
-          <NavLink
-            to="/products"
-            onClick={() => setOpen(false)}
-            className="block"
+        <div>
+        
+          <div
+            className={`${
+              open ? "flex" : "hidden"
+            } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
           >
-            All Products
-          </NavLink>
-          {user && (
+             <NavLink  className="block font-extrabold">
+              {user.name}
+            </NavLink>
+            <NavLink to="/" onClick={() => setOpen(false)} className="block">
+              Home
+            </NavLink>
             <NavLink
-            to="/products"
-               onClick={() => navigate("/my-orders")}
+              to="/products"
+              onClick={() => setOpen(false)}
               className="block"
             >
-              My Orders
+              All Products
             </NavLink>
-          )}
-          {!user ? (
-            <button
-              onClick={() => {
-                setOpen(false);
-                setShowUserLogin(true);
-              }}
-              className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
-            >
-              Login
-            </button>
-          ) : (
-            <button
-              onClick={logout}
-              className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
-            >
-              Logout
-            </button>
-          )}
+            {user && (
+              <NavLink
+                to="/my-orders"
+                onClick={() => navigate("/my-orders")}
+                className="block"
+              >
+                My Orders
+              </NavLink>
+            )}
+            {!user ? (
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  setShowUserLogin(true);
+                }}
+                className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
+              >
+                Login
+              </button>
+            ) : (
+              <button
+                onClick={logout}
+                className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
+              >
+                Logout
+              </button>
+            )}
+          </div>
         </div>
       )}
     </nav>
