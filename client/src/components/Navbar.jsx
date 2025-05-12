@@ -48,6 +48,7 @@ const Navbar = () => {
       <div className="hidden sm:flex items-center gap-8">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/products">All Products</NavLink>
+        <NavLink to="/seller">Seller</NavLink> {/* Seller Button */}
         <NavLink to="/contact">Contact</NavLink>
 
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
@@ -120,56 +121,59 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {open && (
-       
-        
-          <div
-            className={`${
-              open ? "flex" : "hidden"
-            } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
+        <div
+          className={`${
+            open ? "flex" : "hidden"
+          } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
+        >
+          <NavLink className="block font-extrabold">
+            {user ? user.name : "N/A"}
+          </NavLink>
+          <NavLink to="/" onClick={() => setOpen(false)} className="block">
+            Home
+          </NavLink>
+          <NavLink
+            to="/products"
+            onClick={() => setOpen(false)}
+            className="block"
           >
-             <NavLink  className="block font-extrabold">
-              {(user) ? 
-              user.name : "N/A"}
-            </NavLink>
-            <NavLink to="/" onClick={() => setOpen(false)} className="block">
-              Home
-            </NavLink>
+            All Products
+          </NavLink>
+          <NavLink
+            to="/seller"
+            onClick={() => setOpen(false)}
+            className="block"
+          >
+            Seller
+          </NavLink>
+          {user && (
             <NavLink
-              to="/products"
-              onClick={() => setOpen(false)}
+              to="/my-orders"
+              onClick={() => navigate("/my-orders")}
               className="block"
             >
-              All Products
+              My Orders
             </NavLink>
-            {user && (
-              <NavLink
-                to="/my-orders"
-                onClick={() => navigate("/my-orders")}
-                className="block"
-              >
-                My Orders
-              </NavLink>
-            )}
-            {!user ? (
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  setShowUserLogin(true);
-                }}
-                className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
-              >
-                Login
-              </button>
-            ) : (
-              <button
-                onClick={logout}
-                className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
-              >
-                Logout
-              </button>
-            )}
-          </div>
-     
+          )}
+          {!user ? (
+            <button
+              onClick={() => {
+                setOpen(false);
+                setShowUserLogin(true);
+              }}
+              className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
+            >
+              Login
+            </button>
+          ) : (
+            <button
+              onClick={logout}
+              className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-indigo-600-dull transition text-white rounded-full text-sm"
+            >
+              Logout
+            </button>
+          )}
+        </div>
       )}
     </nav>
   );
