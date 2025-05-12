@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 const authUser = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
-    return res.json({ success: false, message: "No Token" });
+    return res.json({ success: false });
   }
 
   try {
