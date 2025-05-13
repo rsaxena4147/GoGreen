@@ -60,7 +60,7 @@ const Cart = () => {
     if (products.length > 0 && cartItems) {
       getCart();
     }
-  }, [products, cartItems]);
+  }, [products, cartItems , cartArray]);
 
   useEffect(() => {
     if (user) {
