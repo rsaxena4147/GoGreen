@@ -43,10 +43,8 @@ export const placeOrderCOD = async (req, res) => {
     });
 
     
-     await Cart.findOneAndUpdate(
-      { user: userId },
-      { items: {} }  
-    );
+       await User.findByIdAndUpdate(userId, { cartItems: {} });
+
 
     return res.json({
       success: true,
