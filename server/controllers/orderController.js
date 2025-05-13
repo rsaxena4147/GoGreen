@@ -42,6 +42,12 @@ export const placeOrderCOD = async (req, res) => {
       paymentType: "COD",
     });
 
+    
+     await Cart.findOneAndUpdate(
+      { user: userId },
+      { items: {} }  
+    );
+
     return res.json({
       success: true,
       message: "Order Placed Successfully",
