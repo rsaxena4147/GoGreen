@@ -9,7 +9,8 @@ import Product from "../models/product.js";
 export const placeOrderCOD = async (req, res) => {
   console.log("i run");
   try {
-    const { userId, items, address } = req.body;
+    let userId = req.userId || req.body.userId;
+    let {  items, address } = req.body;
 
     if (!address || items.length === 0) {
       return res.json({
