@@ -5,6 +5,8 @@
 
 import Order from "../models/order.js";
 import Product from "../models/product.js";
+import User from "../models/User.js";
+
 
 export const placeOrderCOD = async (req, res) => {
   console.log("i run");
