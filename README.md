@@ -34,10 +34,3 @@ GoGreen is a web application focused on promoting eco-friendly habits and sustai
 - MongoDB
 
 ---
-
-# ⚙️ Installation & Setup
-
-## Clone the repository
-
-```bash
-git clone <your-repository-url>
